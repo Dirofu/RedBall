@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class CoinLine : MonoBehaviour
 {
-    [SerializeField] private float _speed;
     [SerializeField] private GameObject[] _coins;
-
-    private void Update()
-    {
-        gameObject.transform.Translate(Vector2.left * _speed * Time.deltaTime);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -5,11 +5,12 @@ using UnityEngine;
 public class Spawner : ObjectPool
 {
     [SerializeField] private GameObject _coin;
-    [SerializeField] private GameObject _barrier;
     [SerializeField] private int _coinCapacity;
-    [SerializeField] private int _barrierCapacity;
-    [SerializeField] private float _spawnTime;
 
+    [SerializeField] private GameObject _barrier;
+    [SerializeField] private int _barrierCapacity;
+
+    [SerializeField] private float _spawnTime;
     [SerializeField] private Transform[] _spawnPoints;
 
     private float _lastSpawnTime;
@@ -32,12 +33,12 @@ public class Spawner : ObjectPool
                 
                 _lastSpawnTime = 0;
 
-                SetCoin(template, _spawnPoints[spawnPointNumber]);
+                SetObject(template, _spawnPoints[spawnPointNumber]);
             }
-        }  
+        }
     }
 
-    private void SetCoin(GameObject template, Transform spawnPoint)
+    private void SetObject(GameObject template, Transform spawnPoint)
     {
         template.transform.position = spawnPoint.position;
         template.SetActive(true);

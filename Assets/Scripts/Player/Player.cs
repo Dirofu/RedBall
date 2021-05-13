@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
+    [SerializeField] private float _speed;
+    [SerializeField] private GroundChecker _grounded;
 
-    private CheckGrounded _grounded;
     private Rigidbody2D _rigidbody;
-    private int _coinsCount;
 
     public event UnityAction CoinPicked;
     public event UnityAction Dead;
@@ -18,11 +18,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _grounded = GetComponentInChildren<CheckGrounded>();
     }
 
     private void Update()
     {
+        transform.Translate(Vector2.right * _speed * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.Space) && _grounded.IsGrounded)
         {
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);

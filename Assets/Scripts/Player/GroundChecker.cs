@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckGrounded : MonoBehaviour
+public class GroundChecker : MonoBehaviour
 {
-    [SerializeField] private GameObject _ground;
-
     public bool IsGrounded { get; private set; }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.layer.ToString() == _ground.layer.ToString())
+        if (collision.gameObject.GetComponent<Ground>())
         {
             IsGrounded = true;
         }
@@ -18,7 +16,7 @@ public class CheckGrounded : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer.ToString() == _ground.layer.ToString())
+        if (collision.gameObject.GetComponent<Ground>())
         {
             IsGrounded = false;
         }
