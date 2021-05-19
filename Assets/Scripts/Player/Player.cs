@@ -9,10 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _speed;
     [SerializeField] private GroundChecker _grounded;
-
+    
+    private int _coinCount;
     private Rigidbody2D _rigidbody;
 
-    public event UnityAction CoinPicked;
+    public event UnityAction<int> CoinPicked;
     public event UnityAction Dead;
 
     private void Start()
@@ -34,7 +35,8 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Coin>())
         {
-            CoinPicked?.Invoke();
+            _coinCount++;
+            CoinPicked?.Invoke(_coinCount);
         }
         else if (collision.gameObject.GetComponent<Barrier>())
         {

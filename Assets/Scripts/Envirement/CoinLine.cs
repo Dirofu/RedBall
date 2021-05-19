@@ -11,7 +11,6 @@ public class CoinLine : MonoBehaviour
         if (collision.gameObject.GetComponent<Destroyer>())
         {
             gameObject.SetActive(false);
-            transform.position = new Vector2(0, 0);
 
             foreach (var coin in _coins)
             {

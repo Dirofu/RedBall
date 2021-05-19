@@ -8,26 +8,23 @@ public class CoinCounter : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private TMP_Text _coinsText;
 
-    private int _coinsCount;
-
     private void OnEnable()
     {
-        _player.CoinPicked += OnValueChanged;
+        _player.CoinPicked += OnCoinPicked;
     }
 
     private void OnDisable()
     {
-        _player.CoinPicked -= OnValueChanged;
+        _player.CoinPicked -= OnCoinPicked;
     }
 
     private void Start()
     {
-        _coinsText.text = _coinsCount.ToString();
+        OnCoinPicked(0);
     }
 
-    private void OnValueChanged()
+    private void OnCoinPicked(int coins)
     {
-        _coinsCount++;
-        _coinsText.text = _coinsCount.ToString();
+        _coinsText.text = coins.ToString();
     }
 }
